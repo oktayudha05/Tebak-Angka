@@ -14,6 +14,7 @@ fn main() {
     };
 
     let angka_random: u32 = rand::thread_rng().gen_range(0..100);
+    let mut jumlah_percobaan: u32 = 0;
 
     loop {
         let mut input_user = String::new();
@@ -30,10 +31,17 @@ fn main() {
         println!("angka tebakan lu : {}", input);
 
         match input.cmp(&angka_random){
-            Ordering::Less => println!("Terlalu kecil, gedein lagi"),
-            Ordering::Greater => println!("Terlalu besar, kecilin lagi"),
+            Ordering::Less => {
+                jumlah_percobaan+=1;
+                println!("Terlalu kecil, gedein lagi");
+            },
+            Ordering::Greater => {
+                jumlah_percobaan+=1;
+                println!("Terlalu besar, kecilin lagi");
+            },
             Ordering::Equal => {
-                println!("CONGRATSS tebakan lu {} dan angka random nya {}", input, angka_random);
+                jumlah_percobaan+=1;
+                println!("CONGRATSS! Tebakan lu bener dalam {} kali percobaan", jumlah_percobaan);
                 break;
             }
         }
