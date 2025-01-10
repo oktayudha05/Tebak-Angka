@@ -39,7 +39,7 @@ fn main() {
                 println!("Terlalu besar, kecilin lagi");
             },
             Ordering::Equal => {
-                let skor = 100 - jumlah_percobaan * 10;
+                let skor = 100 - (jumlah_percobaan / 2) * 10;
                 println!("CONGRATSS! Tebakan lu bener dalam {} kali percobaan", jumlah_percobaan);
                 println!("Skor \t : {}", skor);
                 break;
