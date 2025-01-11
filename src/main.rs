@@ -9,12 +9,18 @@ fn main() {
     let mut nama = String::new();
     let result = io::stdin().read_line(&mut nama);
     match result {
-        Ok(_) => println!("Halo {}, silahkan pilih angka dari 1 smpe 100", nama.trim()),
+        Ok(_) => {
+            if nama.trim() == "rio"{
+                println!("Halo Bos, silahkan pilih angka dari 1 smpe 100");
+            } else {
+                println!("Halo {}, silahkan pilih angka dari 1 smpe 100", nama.trim())
+            }
+        },
         Err(_) => println!("Gagal membaca input user"),
     };
 
-    let angka_random: u32 = rand::thread_rng().gen_range(0..100);
-    let mut jumlah_percobaan: u32 = 0;
+    let angka_random: u32 = rand::thread_rng().gen_range(0..=100);
+    let mut jumlah_percobaan = 0;
 
     loop {
         let mut input_user = String::new();
@@ -39,7 +45,11 @@ fn main() {
                 println!("Terlalu besar, kecilin lagi");
             },
             Ordering::Equal => {
-                let skor = 100 - (jumlah_percobaan / 2) * 10;
+                let skor = if 100 - (jumlah_percobaan / 2) * 10 < 0 {
+                    0
+                } else {
+                    100 - (jumlah_percobaan / 2) * 10
+                };
                 println!("CONGRATSS! Tebakan lu bener dalam {} kali percobaan", jumlah_percobaan);
                 println!("Skor \t : {}", skor);
                 break;
